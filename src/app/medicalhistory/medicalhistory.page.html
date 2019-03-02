@@ -11,22 +11,42 @@
   <ion-text>What is your blood group?</ion-text><br>
   <ion-radio-group [(ngModel)]="bg">      
     <ion-item>
-      <ion-label color="light">A</ion-label>
+      <ion-label color="light">A+</ion-label>
+      <ion-radio color="secondary" slot="start" value="A"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="light">A-</ion-label>
       <ion-radio color="secondary" slot="start" value="A"></ion-radio>
     </ion-item>
     
     <ion-item>
-      <ion-label color="light">B</ion-label>
+      <ion-label color="light">B+</ion-label>
+      <ion-radio color="secondary" slot="start" value="B"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="light">B-</ion-label>
       <ion-radio color="secondary" slot="start" value="B"></ion-radio>
     </ion-item>
     
     <ion-item>
-      <ion-label color="light">AB</ion-label>
+      <ion-label color="light">AB+</ion-label>
       <ion-radio color="secondary" slot="start" value="AB"></ion-radio>
     </ion-item>
     
     <ion-item>
-      <ion-label color="light">O</ion-label>
+      <ion-label color="light">AB-</ion-label>
+      <ion-radio color="secondary" slot="start" value="AB"></ion-radio>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label color="light">O+</ion-label>
+      <ion-radio color="secondary" slot="start" value="O"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="light">O-</ion-label>
       <ion-radio color="secondary" slot="start" value="O"></ion-radio>
     </ion-item>
   </ion-radio-group>

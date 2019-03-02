@@ -59,17 +59,17 @@ export class MedicalhistoryPage implements OnInit {
 
   submit(){
 
-    // this.medicalHistoryCollection.doc('MedicalRequirement').set({
-    //   age: this.age,
-    //   sex: this.sex,
-    //   bg: this.bg,
-    //   bp: this.bp,
-    //   diabetes: this.diabetes,
-    //   thyroid: this.thyroid,
-    //   cardiology: this.cardiology,
-    //   alcohol: this.alcohol,
-    //   tobacco: this.tobacco
-    // })
+    this.medicalHistoryCollection.doc('MedicalRequirement').set({
+      age: this.age,
+      sex: this.sex,
+      bg: this.bg,
+      bp: this.bp,
+      diabetes: this.diabetes,
+      thyroid: this.thyroid,
+      cardiology: this.cardiology,
+      alcohol: this.alcohol,
+      tobacco: this.tobacco
+    })
     this.router.navigate(['triallist/'+this.fullname]);
   }
 }

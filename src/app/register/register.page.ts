@@ -39,15 +39,14 @@ export class RegisterPage implements OnInit,Patient {
 
   next(){
 
-    // this.patientCollection.doc(this.fullname).set({
-    //   fullname: this.fullname,
-    //   dob: this.dob.toString(),
-    //   gender: this.gender,
-    //   contactno: this.contactno,
-    //   address: this.address,
-    //   pincode: this.pincode});
-    // this.age = new Date(). - this.dob;
-    this.router.navigate(['medicalhistory/'+this.fullname+"/adult/"+this.gender]);
+    this.patientCollection.doc(this.fullname).set({
+      fullname: this.fullname,
+      dob: this.dob.toString(),
+      gender: this.gender,
+      contactno: this.contactno,
+      address: this.address,
+      pincode: this.pincode});
+    this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
   }
 
 }
