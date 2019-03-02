@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title color="light">FeedBack</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-title text-center color="dark">Please fill the below feedback<br> to the best of your knowledge</ion-title>
+<br>
+<ion-text>Do you feel headache?</ion-text><br>
+<ion-radio-group>      
+    <ion-item>
+      <ion-label color="light">Yes</ion-label>
+      <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="light">No</ion-label>
+      <ion-radio slot="start" value="no" ></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+
+<br>
+<ion-text>do you feel stomachache?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes" checked></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no"></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Do you feel nauseatic(feeling of vomiting)?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes" checked></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no"></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you experiencing constipation?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="1"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio color="tertiary" slot="start" value="2" ></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you experiencing insomnia?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Do you feel fever?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you experiencing diarrohea(loss of water from body)?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you experiencing food appetite?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you experiencing anxiety?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+
+<ion-button type="submit" class="submit" (click)="submit()">SUBMIT</ion-button>
+</ion-content>

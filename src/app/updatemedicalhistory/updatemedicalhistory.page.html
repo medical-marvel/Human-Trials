@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar text-center>
+    <ion-title color="light">Update Medical History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-title text-center color="dark">Please complete the below part<br> to the best of your knowledge</ion-title>
+<br>
+<ion-text>Have you ever performed this practice before?</ion-text><br>
+<ion-radio-group>      
+    <ion-item>
+      <ion-label color="light">Yes</ion-label>
+      <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="light">No</ion-label>
+      <ion-radio slot="start" value="no" ></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+
+<br>
+<ion-text>Are you under any ongoing treatment?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes" checked></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no"></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you taking any medicine?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes" checked></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no"></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>How often do you go to Hospital?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Once in a week</ion-label>
+    <ion-radio color="secondary" slot="start" value="1"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">Once in a month</ion-label>
+    <ion-radio color="tertiary" slot="start" value="2" ></ion-radio>
+  </ion-item>
+
+  <ion-item>
+      <ion-label color="light">When conditions are such</ion-label>
+      <ion-radio slot="start" value="3" checked></ion-radio>
+    </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Is there any regular doctor you are visiting who can tell more about your medical background?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Are you allergic to any medications?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">No</ion-label>
+    <ion-radio slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Does your Blood Pressure goes low or high?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">High</ion-label>
+    <ion-radio color="secondary" slot="start" value="high" checked></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">Normal</ion-label>
+    <ion-radio color="tertiary" slot="start" value="normal"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+      <ion-label color="light">Low</ion-label>
+      <ion-radio slot="start" value="low"></ion-radio>
+    </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Do you have Diabetes?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">YES</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">NO</ion-label>
+    <ion-radio color="tertiary" slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<br>
+<ion-text>Do you have any implanted body or foreign body parts?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">YES</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">NO</ion-label>
+    <ion-radio color="tertiary" slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+<br>
+<ion-text>Do you carry any medication for emergency?</ion-text><br>
+<ion-radio-group>      
+  <ion-item>
+    <ion-label color="light">Yes</ion-label>
+    <ion-radio color="secondary" slot="start" value="yes"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="light">NO</ion-label>
+    <ion-radio color="tertiary" slot="start" value="no" checked></ion-radio>
+  </ion-item>
+</ion-radio-group>
+<br>
+<ion-button type="submit" class="submit" (click)="submit()">SUBMIT</ion-button>
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center color="light">OBESE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+      <img src="../../assets/images/obesity.png">
+  </div><br>
+
+  <ion-label >LAB NAME:</ion-label>
+  <ion-item lines="none">  
+    <ion-input type="text" readonly value="WORLD HEALTH ORGANIZATION"></ion-input>
+  </ion-item><br>
+
+  <ion-label>START DATE:</ion-label>
+  <ion-item lines="none">  
+      <ion-datetime value="2000-01-01" displayFormat="MMM YYYY DD"></ion-datetime>
+  </ion-item><br>
+
+  <ion-label>OBJECTIVE OF THE TRIAL</ion-label>
+  <ion-item lines="none">
+    <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
+  </ion-item><br>
+
+  <ion-label>BASIC MEDICAL REQUIERMENTS</ion-label>
+  <ion-item lines="none">
+    <ion-textarea type="text" readonly value="DONT GET PANIC"></ion-textarea>
+  </ion-item><br>
+
+  <ion-label>INSUARANCE POLICY</ion-label>
+  <ion-item lines="none">
+    <ion-input type="text" readonly value="YES"></ion-input>
+  </ion-item><br>
+
+  <ion-grid>
+      <ion-row>
+        <ion-col offset="4">
+          <ion-button float-center clear small (click)="apply()">APPLY</ion-button>  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
