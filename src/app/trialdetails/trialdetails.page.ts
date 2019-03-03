@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-trialdetails',
@@ -8,7 +9,15 @@ import { Router } from '@angular/router';
 })
 export class TrialdetailsPage implements OnInit {
 
-  constructor(public router:Router) { }
+  labName: string;
+  trialName: string;
+  constructor(public router:Router,
+    db: AngularFirestore,
+    private activatedRoute: ActivatedRoute) { 
+      this.labName = this.activatedRoute.snapshot.paramMap.get('labName');
+      this.trialName = this.activatedRoute.snapshot.paramMap.get('trialName');
+      console.log(this.labName+" "+this.trialName)
+    }
 
   ngOnInit() {
   }

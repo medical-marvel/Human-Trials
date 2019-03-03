@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,24 +8,29 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(public router:Router) { }
+  fullname: string;
+
+  constructor(public router:Router,
+    private activatedRoute: ActivatedRoute) { 
+      this.fullname = this.activatedRoute.snapshot.paramMap.get('fullname');
+    }
 
   ngOnInit() {
   }
   updateprofile(){
-    this.router.navigate(['updatepersonaldetails']);
+    this.router.navigate(['updatepersonaldetails/'+this.fullname]);
   }
   updatemedicalhistory(){
-    this.router.navigate(['updatemedicalhistory']);
+    this.router.navigate(['updatemedicalhistory/'+this.fullname]);
   }
   ongoing(){
-    this.router.navigate(['ongoingtrials']);
+    this.router.navigate(['ongoingtrials/'+this.fullname]);
   }
   prev(){
-    this.router.navigate(['previoustrials']);
+    this.router.navigate(['previoustrials/'+this.fullname]);
   }
   trialist(){
-    this.router.navigate(['triallist']);
+    this.router.navigate(['triallist/'+this.fullname]);
   }
 
 }

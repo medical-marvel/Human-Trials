@@ -11,7 +11,12 @@
 
   <ion-label >LAB NAME:</ion-label>
   <ion-item lines="none">  
-    <ion-input type="text" readonly value="WORLD HEALTH ORGANIZATION"></ion-input>
+    <ion-input type="text" readonly>{{ labName }}</ion-input>
+  </ion-item><br>
+
+  <ion-label>Medicine Name</ion-label>
+  <ion-item lines="none">  
+    <ion-input type="text" readonly>{{ trialName }}</ion-input>
   </ion-item><br>
 
   <ion-label>START DATE:</ion-label>
@@ -24,14 +29,19 @@
     <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
   </ion-item><br>
 
-  <ion-label>BASIC MEDICAL REQUIERMENTS</ion-label>
+  <ion-label>Age</ion-label>
   <ion-item lines="none">
-    <ion-textarea type="text" readonly value="DONT GET PANIC"></ion-textarea>
+    <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
+  </ion-item><br>
+  
+  <ion-label>Purpose</ion-label>
+  <ion-item lines="none">
+    <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
   </ion-item><br>
 
-  <ion-label>INSUARANCE POLICY</ion-label>
-  <ion-item lines="none">
-    <ion-input type="text" readonly value="YES"></ion-input>
+  <ion-label>Side Effects</ion-label>
+  <ion-item lines="none" *ngFor="let sideeffect of sideeffects">
+    <ion-textarea type="text" readonly>{{ trialName }}</ion-textarea>
   </ion-item><br>
 
   <ion-grid>

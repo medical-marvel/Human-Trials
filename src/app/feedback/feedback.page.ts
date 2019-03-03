@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Patient } from '../register/register.page';
+import { MedicalHistory } from '../medicalhistory/medicalhistory.page';
 
 export interface Feedback{
   headache: string;
@@ -35,9 +37,18 @@ export class FeedbackPage implements OnInit {
   year: string;
   fulldate: string;
   private feedbackCollection: AngularFirestoreCollection<Feedback>;
+  private patientDetails: AngularFirestoreCollection<Patient>;
+  private medicalHistory: AngularFirestoreDocument<MedicalHistory>;
+  private labPatientDetails: AngularFirestoreCollection<Patient>;
+  private labPatientMedicalHistory: AngularFirestoreDocument<MedicalHistory>;
+
   constructor(private router: Router,
     db: AngularFirestore) {
-      this.feedbackCollection = db.collection('Lab').doc('bvG2bGCeWBhs0uKBMDth7OWPhQ32').collection('Trial').doc('Trial_1').collection('Phase').doc('Phase_1').collection('Patient').doc('viraj').collection('Feedback');
+      // this.patientDetails = db.collection('Patient');
+      // this.medicalHistory = db.collection('Patient').doc(this.fulldate).collection('MedicalHistory').doc('MedicalRequirement');
+      // this.feedbackCollection = db.collection('Lab').doc('bvG2bGCeWBhs0uKBMDth7OWPhQ32').collection('Trial').doc('Trial_1').collection('Phase').doc('Phase_1').collection('Patient').doc(this.username).collection('Feedback');
+      // this.labPatientMedicalHistory = db.collection('Lab').doc('bvG2bGCeWBhs0uKBMDth7OWPhQ32').collection('Trial').doc('Trial_1').collection('Phase').doc('Phase_1').collection('Patient').doc(this.username).collection('MedicalHistory').doc('MedicalRequirement');
+      // this.labPatientDetails = db.collection('Lab').doc('bvG2bGCeWBhs0uKBMDth7OWPhQ32').collection('Trial').doc('Trial_1').collection('Phase').doc('Phase_1').collection('Patient');
     }
     ngOnInit() {
     }
@@ -51,7 +62,7 @@ export class FeedbackPage implements OnInit {
       else this.fulldate += "-"+this.month;
       if(this.date.length == 1)this.fulldate += "-0"+this.date;
       else this.fulldate += "-"+this.date;
-      this.feedbackCollection.doc('Feedback_1').set({
+      this.feedbackCollection.doc('Feedback_2').set({
         headache: this.headache,
         stomachache: this.stomachache,
         nauseatic: this.nauseatic,

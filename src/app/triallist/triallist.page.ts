@@ -138,11 +138,11 @@ export class TriallistPage implements OnInit {
       }
       
       profile(){
-        this.router.navigate(['profile']);
+        this.router.navigate(['profile/'+this.fullname]);
       }
       
-      view(){
-        this.router.navigate(['trialdetails']);
+      view(labName,trialName){
+        this.router.navigate(['trialdetails/'+labName+"/"+trialName]);
       }
     }
     

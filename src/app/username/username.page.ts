@@ -24,21 +24,18 @@ export class UsernamePage implements OnInit {
     this.gender = this.activatedRoute.snapshot.paramMap.get('gender');
     this.age = this.activatedRoute.snapshot.paramMap.get('age');
     this.patientCollection = db.collection<Patient>('Patient');
-    console.log(this.fullname);
-    console.log(this.gender);
-    console.log(this.age);
   }
 
   ngOnInit() {}
 
   next(){
-    if(this.password == this.confirm_password){
-      this.patientCollection.doc(this.fullname).update({password: this.password}).then( res => {
-        this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
-      });
-    } else {
-      alert("Passwords does not match");
-    }
+  //   if(this.password == this.confirm_password){
+  //     this.patientCollection.doc(this.fullname).update({password: this.password}).then( res => {
+  //       this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
+  //     });
+  //   } else {
+  //     alert("Passwords does not match");
+  //   }
+    this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
   }
-
 }

@@ -73,7 +73,8 @@ export class DoctorPage implements OnInit, Doctor {
           doc_address: this.doc_address,
           doc_pincode: this.doc_pincode,
           clinic_city: this.clinic_city,
-          clinic_state: this.clinic_state
+          clinic_state: this.clinic_state,
+          status: "Pending"
         });
       }
     }
