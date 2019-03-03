@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -7,7 +7,7 @@ export interface Patient{
   fullname:string;
   dob: string;
   gender: string;
-  contactno: number;
+  contactno: string;
   address:string;
   pincode:number;
 }
@@ -21,16 +21,18 @@ export class RegisterPage implements OnInit,Patient {
 
   public patientCollection: AngularFirestoreCollection<Patient>;
   public patients: Observable<Patient[]>;
-  age: number;
-  fullname:string;
+  age: string;
+  fullname: string;
   dob: string;
   gender: string;
-  contactno: number;
+  contactno: string;
   address:string;
   pincode:number;
 
   constructor(public router: Router,
-    db: AngularFirestore) {
+    db: AngularFirestore,
+    private activatedRoute: ActivatedRoute) {
+      this.fullname = this.activatedRoute.snapshot.paramMap.get('fullname');
       this.patientCollection = db.collection<Patient>('Patient');
     }
 
@@ -46,7 +48,7 @@ export class RegisterPage implements OnInit,Patient {
       contactno: this.contactno,
       address: this.address,
       pincode: this.pincode});
-    this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
+    this.router.navigate(['username/'+this.fullname+"/"+this.age+"/"+this.gender]);
   }
 
 }

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { MedicalHistory } from '../medicalhistory/medicalhistory.page';
-import { Patient } from '../register/register.page';
 import { LoadingController } from '@ionic/angular'
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, bindCallback } from 'rxjs';
+import { map, delay, first } from 'rxjs/operators';
 
 export interface Trial{
   purpose: string,
@@ -37,7 +36,7 @@ export interface Count{
   styleUrls: ['./triallist.page.scss'],
 })
 export class TriallistPage implements OnInit {
-
+  
   private labCollection: AngularFirestoreCollection<Lab>;
   private medicalHistoryDocument: AngularFirestoreDocument<MedicalHistory>;
   private counterCollection: AngularFirestoreCollection<Count>;
@@ -64,8 +63,8 @@ export class TriallistPage implements OnInit {
   thyroid: string;
   diabetes: string;
   patient_age: string;
-  recommended_trial= new Array();
-
+  recommended_trial: [[number,string,string]] = [[0,"zbc","xyz"]];
+  
   constructor(private router:Router,
     db: AngularFirestore,
     private activatedRoute: ActivatedRoute,
@@ -75,73 +74,75 @@ export class TriallistPage implements OnInit {
       this.labCollection = db.collection<Lab>('Lab');
       this.counterCollection = db.collection('Counter');
     }
-
-  async ngOnInit() {
-    this.labs = this.labCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data };
-        });
-      })
-    );
     
-    this.labs.subscribe( res => {
-      this.labsArray = res;
-    });
-
-    this.medicalHistoryDocument.get().toPromise().then((result) => {
-      this.cardiology = result.data()['cardiology'];
-      this.thyroid = result.data()['thyroid'];
-      this.diabetes = result.data()['diabetes'];
-      this.patient_age = result.data()['age'];
-    });
-
-    this.labCollection.get().toPromise().then((res) => {
-      this.labcount = res.size;
-      for(this.i = 0; this.i < 1; this.i++){
-        this.labCollection.doc(res.docs[0].id).collection('Trial').get().toPromise().then((value) => {
-          this.trialcount = value.size;
-          console.log(this.trialcount);
-          for(this.j = 0; this.j < this.trialcount; this.j++){
-            console.log(value.docs[this.j].data()['purpose']);
-            this.purpose = value.docs[this.j].data()['purpose'];
-            this.patient_no = value.docs[this.j].data()['patient_no'];
-            this.trial_no = value.docs[this.j].data()['trial_no'];
-            this.success_rate = value.docs[this.j].data()['success_rate'];
-            this.age = value.docs[this.j].data()['age'];
-            if((this.purpose == 'cardiology' && this.cardiology == 'yes') && (this.age == this.patient_age)){
-              console.log(this.purpose);  
-              this.recommended_trial.push(this.purpose);
-              this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
-              console.log(this.preference);
-            }
-            if((this.purpose == 'thyroid' && this.thyroid == 'yes') && (this.age == this.patient_age)){
-              console.log(this.purpose);
-              this.recommended_trial.push(this.purpose);
-              this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
-              console.log(this.preference);
-            }
-            if((this.purpose == 'diabetes' && this.diabetes == 'yes') && (this.age == this.patient_age)){
-              console.log(this.purpose);
-              this.recommended_trial.push(this.purpose);
-              this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
-              console.log(this.preference);
-            }
+    ngOnInit() {
+      this.first();
+    }
+    
+    first(){
+      this.labs = this.labCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+        );
+        
+        this.labs.subscribe( res => {
+          this.labsArray = res;
+        });
+        
+        this.medicalHistoryDocument.get().toPromise().then((result) => {
+          this.cardiology = result.data()['cardiology'];
+          this.thyroid = result.data()['thyroid'];
+          this.diabetes = result.data()['diabetes'];
+          this.patient_age = result.data()['age'];
+        });
+        
+        this.labCollection.get().toPromise().then((res) => {
+          this.labcount = res.size;
+          for(this.i = 0; this.i < 1; this.i++){
+            this.labCollection.doc(res.docs[0].id).collection('Trial').get().toPromise().then((value) => {
+              this.trialcount = value.size;
+              console.log(this.trialcount);
+              for(this.j = 0; this.j < this.trialcount; this.j++){
+                console.log(value.docs[this.j].data()['purpose']);
+                this.purpose = value.docs[this.j].data()['purpose'];
+                this.patient_no = value.docs[this.j].data()['patient_no'];
+                this.trial_no = value.docs[this.j].data()['trial_no'];
+                this.success_rate = value.docs[this.j].data()['success_rate'];
+                this.age = value.docs[this.j].data()['age'];
+                if((this.purpose == 'cardiology' && this.cardiology == 'yes') && (this.age == this.patient_age)){
+                  this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
+                  if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
+                  this.recommended_trial.push([this.preference,res.docs[0].data()['Name'],this.purpose]);
+                }
+                if((this.purpose == 'thyroid' && this.thyroid == 'yes') && (this.age == this.patient_age)){
+                  this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
+                  if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
+                  this.recommended_trial.push([this.preference,res.docs[0].data()['Name'],this.purpose]); 
+                }
+                if((this.purpose == 'diabetes' && this.diabetes == 'yes') && (this.age == this.patient_age)){
+                  this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
+                  if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
+                  this.recommended_trial.push([this.preference,res.docs[0].data()['Name'],this.purpose]);
+                }
+              }
+            });
           }
+          this.recommended_trial = this.recommended_trial.sort();
+          console.log(this.recommended_trial);
         });
       }
-    });
-    console.log(this.recommended_trial);
-  }
-
-  
-  profile(){
-    this.router.navigate(['profile']);
-  }
-
-  view(){
-    this.router.navigate(['trialdetails']);
-  }
-}
+      
+      profile(){
+        this.router.navigate(['profile']);
+      }
+      
+      view(){
+        this.router.navigate(['trialdetails']);
+      }
+    }
+    

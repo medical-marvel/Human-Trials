@@ -6,21 +6,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="card1" color="light" *ngFor="let lab of labsArray, let i = index">
+  <ion-card class="card1" color="light" *ngFor="let rt of recommended_trial">
     <ion-card-header >                
       <p>Lab Name</p> 
-      <p class="title">{{ lab['Name'] }}&emsp;{{ i }}</p>
+      <p class="title">{{ rt[1] }}</p>
     </ion-card-header>                
     <ion-card-content>
       <br>
-      <p class="subtitle">Trial Name: {{ purpose }}</p><br>         
+      <p class="subtitle">Trial Name: {{ rt[2] }}</p><br>         
       <div>
         <ion-button size="small" (click)="view()"><ion-icon slot="end" name="arrow-round-forward"></ion-icon>View</ion-button>
       </div>        
     </ion-card-content>        
   </ion-card>
-  
-  <ion-card class="card1" color="light">
+
+  <!-- <ion-card class="card1" color="light">
     <ion-card-header >                
       <p>Lab Name</p> 
       <p class="title">ICN</p>
@@ -46,6 +46,6 @@
         <ion-button size="small" (click)="view()"><ion-icon slot="end" name="arrow-round-forward"></ion-icon>View</ion-button>
       </div>        
     </ion-card-content>        
-  </ion-card>
+  </ion-card> -->
   
 </ion-content>

@@ -52,9 +52,8 @@ export class MedicalhistoryPage implements OnInit {
       this.sex = this.activatedRoute.snapshot.paramMap.get('gender');
       this.medicalHistoryCollection = db.collection<Patient>('Patient').doc(this.fullname).collection<MedicalHistory>('MedicalHistory');
      }
-
+ 
   ngOnInit() {
-    this.fullname = this.activatedRoute.snapshot.paramMap.get('fullname');
   }
 
   submit(){

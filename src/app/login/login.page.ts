@@ -7,6 +7,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Patient } from '../register/register.page';
 
 @Component({
   selector: 'app-login',
@@ -18,23 +20,35 @@ export class LoginPage implements OnInit {
   username:string;
   password:string;
   user: Observable<firebase.User>;
+  patient_password: string;
+  private patientCollection: AngularFirestoreCollection<Patient>;
 
   constructor(public router:Router,
     private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
-    private platform: Platform) {
+    private platform: Platform,
+    db: AngularFirestore) {
       this.user = this.afAuth.authState;
+      this.patientCollection = db.collection('Patient');
     }
 
   ngOnInit() {
   }
 
   login(){
-    console.log(this.username);
-    console.log(this.password);
-    if(this.username!=null||this.password!=null){
-      this.router.navigate(['triallist/'+this.username]);
-    } 
+    try{
+      this.patientCollection.doc(this.username).get().toPromise().then(res => {
+        this.patient_password = res.data()['password'];
+      });
+      console.log(this.username);
+      console.log(this.password);
+      if(this.password == this.patient_password){
+        this.router.navigate(['triallist/'+this.username]);
+      } 
+    }
+    catch(err){
+      alert("Username or Password incorrect");
+    }
   }
 
   register(){

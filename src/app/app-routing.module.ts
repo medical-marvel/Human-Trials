@@ -22,7 +22,9 @@ const routes: Routes = [
   { path: 'ongoingtrials', loadChildren: './ongoingtrials/ongoingtrials.module#OngoingtrialsPageModule' },
   { path: 'trialcenters', loadChildren: './trialcenters/trialcenters.module#TrialcentersPageModule' },
   { path: 'doctor', loadChildren: './doctor/doctor.module#DoctorPageModule' },
-  { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' }
+  { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' },
+  { path: 'username', loadChildren: './username/username.module#UsernamePageModule' },
+  { path: 'username/:fullname/:age/:gender', loadChildren: './username/username.module#UsernamePageModule' }
 ];
 
 @NgModule({
