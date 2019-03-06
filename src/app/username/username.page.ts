@@ -29,13 +29,13 @@ export class UsernamePage implements OnInit {
   ngOnInit() {}
 
   next(){
-  //   if(this.password == this.confirm_password){
-  //     this.patientCollection.doc(this.fullname).update({password: this.password}).then( res => {
-  //       this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
-  //     });
-  //   } else {
-  //     alert("Passwords does not match");
-  //   }
+    if(this.password == this.confirm_password){
+      this.patientCollection.doc(this.fullname).update({password: this.password}).then( res => {
+        this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
+      });
+    } else {
+      alert("Passwords does not match");
+    }
     this.router.navigate(['medicalhistory/'+this.fullname+"/"+this.age+"/"+this.gender]);
   }
 }

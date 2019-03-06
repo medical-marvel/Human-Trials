@@ -4,8 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { MedicalHistory } from '../medicalhistory/medicalhistory.page';
 import { LoadingController } from '@ionic/angular'
 import { Observable, bindCallback } from 'rxjs';
-import { map, delay, first } from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
+ 
 export interface Trial{
   purpose: string,
   age: string,
@@ -63,6 +63,7 @@ export class TriallistPage implements OnInit {
   thyroid: string;
   diabetes: string;
   patient_age: string;
+  muscle: string;
   recommended_trial: [[number,string,string]] = [[0,"zbc","xyz"]];
   
   constructor(private router:Router,
@@ -70,9 +71,9 @@ export class TriallistPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private loadingController: LoadingController) { 
       this.fullname = this.activatedRoute.snapshot.paramMap.get('fullname');
-      this.medicalHistoryDocument = db.collection('Patient').doc(this.fullname).collection<MedicalHistory>('MedicalHistory').doc('MedicalRequirement');
       this.labCollection = db.collection<Lab>('Lab');
       this.counterCollection = db.collection('Counter');
+      this.medicalHistoryDocument = db.collection('Patient').doc(this.fullname).collection('MedicalHistory').doc('MedicalRequirement');
     }
     
     ngOnInit() {
@@ -99,12 +100,13 @@ export class TriallistPage implements OnInit {
           this.thyroid = result.data()['thyroid'];
           this.diabetes = result.data()['diabetes'];
           this.patient_age = result.data()['age'];
+          this.muscle = result.data()['Muscle_Growth'];
         });
         
         this.labCollection.get().toPromise().then((res) => {
           this.labcount = res.size;
-          for(this.i = 0; this.i < 1; this.i++){
-            this.labCollection.doc(res.docs[0].id).collection('Trial').get().toPromise().then((value) => {
+          // for(this.i = 0; this.i < this.labcount; this.i++){
+            this.labCollection.doc(res.docs[1].id).collection('Trial').get().toPromise().then((value) => {
               this.trialcount = value.size;
               console.log(this.trialcount);
               for(this.j = 0; this.j < this.trialcount; this.j++){
@@ -117,21 +119,26 @@ export class TriallistPage implements OnInit {
                 if((this.purpose == 'cardiology' && this.cardiology == 'yes') && (this.age == this.patient_age)){
                   this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
                   if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
-                  this.recommended_trial.push([this.preference,res.docs[0].data()['Name'],this.purpose]);
+                  this.recommended_trial.push([this.preference,res.docs[1].data()['Name'],this.purpose]);
                 }
                 if((this.purpose == 'thyroid' && this.thyroid == 'yes') && (this.age == this.patient_age)){
                   this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
                   if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
-                  this.recommended_trial.push([this.preference,res.docs[0].data()['Name'],this.purpose]); 
+                  this.recommended_trial.push([this.preference,res.docs[1].data()['Name'],this.purpose]); 
                 }
                 if((this.purpose == 'diabetes' && this.diabetes == 'yes') && (this.age == this.patient_age)){
                   this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
                   if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
-                  this.recommended_trial.push([this.preference,res.docs[0].data()['Name'],this.purpose]);
+                  this.recommended_trial.push([this.preference,res.docs[1].data()['Name'],this.purpose]);
+                }
+                if((this.purpose == 'Muscle_Growth' && this.muscle == 'yes') && (this.age == this.patient_age)){
+                  this.preference = (this.patient_no*this.no_of_patients_weight) + (this.trial_no*this.no_of_trial_weight) + (this.success_rate*this.success_rate_weight);
+                  if(this.recommended_trial[0][0] == 0) this.recommended_trial.pop();
+                  this.recommended_trial.push([this.preference,res.docs[1].data()['Name'],this.purpose]);
                 }
               }
             });
-          }
+          //}
           this.recommended_trial = this.recommended_trial.sort();
           console.log(this.recommended_trial);
         });
@@ -142,7 +149,7 @@ export class TriallistPage implements OnInit {
       }
       
       view(labName,trialName){
-        this.router.navigate(['trialdetails/'+labName+"/"+trialName]);
+        this.router.navigate(['trialdetails/'+labName+"/"+trialName+"/"+this.fullname]);
       }
     }
     

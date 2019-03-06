@@ -21,27 +21,28 @@
 
   <ion-label>START DATE:</ion-label>
   <ion-item lines="none">  
-      <ion-datetime value="2000-01-01" displayFormat="MMM YYYY DD"></ion-datetime>
+      <ion-datetime value="2019-03-03" displayFormat="MMM YYYY DD"></ion-datetime>
   </ion-item><br>
 
   <ion-label>OBJECTIVE OF THE TRIAL</ion-label>
   <ion-item lines="none">
-    <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
+    <ion-textarea type="text" readonly value="To cure People."></ion-textarea>
   </ion-item><br>
 
   <ion-label>Age</ion-label>
   <ion-item lines="none">
-    <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
+    <ion-textarea type="text" readonly value="20"></ion-textarea>
   </ion-item><br>
   
   <ion-label>Purpose</ion-label>
   <ion-item lines="none">
-    <ion-textarea type="text" readonly value="Hello Im there"></ion-textarea>
+    <ion-textarea type="text" readonly value="Cardiology"></ion-textarea>
   </ion-item><br>
 
   <ion-label>Side Effects</ion-label>
-  <ion-item lines="none" *ngFor="let sideeffect of sideeffects">
-    <ion-textarea type="text" readonly>{{ trialName }}</ion-textarea>
+  <ion-item lines="none">
+    <ion-item><ion-input type="text" readonly>Nausea</ion-input><br></ion-item>
+    <ion-item><ion-input type="text" readonly>Vomiting</ion-input></ion-item>
   </ion-item><br>
 
   <ion-grid>
